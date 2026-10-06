@@ -1,11 +1,6 @@
-let Euro; Number(prompt("Indica el precio en euro"));
-let Conversion = 1.01;
-let Dolar;
-
-function pasarDolar(){
-    Euro = Number(prompt("Indica el precio en euro"));
-
-     Dolar = Euro * Conversion;
-    return Dolar, Euro; 
+function pasarDolar(conversion = 1.01){
+    let Euros = prompt("Introduce la cantidad de Euros a convertir a Dólares");
+    let Dolar = Euros * conversion;
+    console.log(Euros + " Euros son " + Dolar + " Dólares");
 }
-console.log("Estos euros "+ Euro +" son "+Dolar+" Dollar");
+pasarDolar();

@@ -1,8 +1,14 @@
 function mover(pasillo, ordenes){
-    let posicion = pasillo.indexOf("🤖");
+    let posicion;
+    do{
+        posicion = Math.floor(Math.random()*pasillo.length);
+    }
+    while (pasillo[posicion] === "🚧");
     let rechazadas = [];
+    let posicionInicial = posicion;
+    pasillo[posicion] = "🤖";
 
-
+    document.body.innerHTML += "<p>Pasillo inicial: "+pasillo.join(",")+"</p>";
     for(let orden of ordenes){
     let nuevaPosicion = posicion;
     if(orden === "derecha")nuevaPosicion++;
@@ -26,11 +32,13 @@ function mover(pasillo, ordenes){
     }
 
     let pasilloFinal = [...pasillo];
+
+    pasilloFinal[posicionInicial]= "_"
     pasilloFinal[posicion] = "🏁";
     document.body.innerHTML += "<p>Pasillo final: "+pasilloFinal.join(",")+"</p>";
     document.body.innerHTML += "<p>Órdenes rechazadas: "+rechazadas.join(", ")+"</p>";
 }
-let pasillo = ["🤖","_","🚧","_","_","_","_"];
+let pasillo = ["_","_","🚧","_","_","_","_"];
 let ordenes = ["derecha","derecha","izquierda","izquierda"];
-document.body.innerHTML += "<p>Pasillo inicial: "+pasillo.join(",")+"</p>";
+
 mover(pasillo, ordenes);

@@ -1,37 +1,20 @@
 class Libro {
-    constructor(titulo, autor, numeroPaginas) {
-        if (titulo === null || titulo === undefined || titulo === "") {
-            throw new Error("titulo no puede estar vacio");
-        }
-
-        if (autor === null || autor === undefined || autor === "") {
-            throw new Error("autor no puede estar vacio");
-        }
-        if (isNaN(numeroPaginas) || numeroPaginas <= 0) {
-            throw new Error("no puede tener paginas negativas");
-        }
-        this.autor = autor;
-        this.titulo = titulo;
-        this.numeroPaginas = numeroPaginas;
-
+  constructor(titulo, autor, paginas) {
+    if (!titulo || !autor || !Number.isInteger(paginas) || paginas <= 0) {
+      throw new Error("Datos inválidos: título y autor deben tener texto, páginas debe ser entero > 0");
     }
-    describir() {
-        document.body.innerHTML += "<p>El titulo del libro es: " + this.titulo + "</p><p>El autor es: " + this.autor + "</p><p>El numero de páginas es: " + this.numeroPaginas;
-    }
+    this.titulo = titulo;
+    this.autor = autor;
+    this.paginas = paginas;
+  }
 
-    esExtenso() {
-        if (this.numeroPaginas >= 300) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+  describir() {
+    return `${this.titulo} de ${this.autor}, ${this.paginas} páginas.`;
+  }
 
+  esExtenso() {
+    return this.paginas >= 300
+      ? `${this.titulo} es extenso`
+      : `${this.titulo} NO es extenso`;
+  }
 }
-
-const libro = new Libro("venos", "jajs", 300);
-libro.describir();
-console.log(libro.esExtenso());
-
-

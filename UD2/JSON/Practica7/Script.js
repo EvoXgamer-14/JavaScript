@@ -15,3 +15,24 @@ var fichaCafe = {
     ingredientes: cafe.ingredients,
     imagen: cafe.image,
 };
+console.log(fichaCafe.id);
+console.log(fichaCafe.nombre);
+console.log(fichaCafe.ingredientes);
+
+
+document.body.innerHTML += `<h1>${fichaCafe.nombre}</h1>`;
+document.body.innerHTML += `<img src="${fichaCafe.imagen}"  height="300px">`;
+
+var fichaCafe2 = {
+    id: fichaCafe.id,
+    nombre: fichaCafe.nombre,
+    ingredientes: fichaCafe.ingredientes,
+}
+
+const jsonCafe = JSON.stringify(fichaCafe2, null, 2);
+
+console.log("Recuperado: " + jsonCafe);
+document.body.innerHTML += `<pre>${jsonCafe}</pre>`;
+
+var cafe2 = JSON.parse(jsonCafe);
+console.log("Tiene imagen? "+cafe2.hasOwnProperty("imagen"));
